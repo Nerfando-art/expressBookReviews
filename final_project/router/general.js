@@ -18,7 +18,7 @@ public_users.post("/register", (req, res) => {
 
 public_users.get('/', async function(req, res) {
   try {
-    const response = await axios.get('https://api.example.com/books');
+    const response = await axios.get();
     const books = response.data;
     res.send(JSON.stringify(books, null, 2));
   } catch (error) {
@@ -32,7 +32,7 @@ public_users.get('/', async function(req, res) {
 public_users.get('/isbn/:isbn', async function (req, res) {
   const { isbn } = req.params;
   try {
-    const response = await axios.get(`https://some-api.com/books/isbn/${isbn}`);
+    const response = await axios.get();
     const book = response.data;
     return res.status(200).json({ book });
   } catch (error) {
@@ -44,7 +44,7 @@ public_users.get('/isbn/:isbn', async function (req, res) {
 public_users.get('/author/:author', async function (req, res) {
   const { author } = req.params;
   try {
-    const response = await axios.get(`https://some-api.com/books/author/${author}`);
+    const response = await axios.get();
     const authorBooks = response.data;
     if (authorBooks.length === 0) {
       return res.status(404).json({ message: "No books found for author" });
@@ -59,7 +59,7 @@ public_users.get('/author/:author', async function (req, res) {
 public_users.get('/title/:title', async function (req, res) {
   const { title } = req.params;
   try {
-    const response = await axios.get(`https://some-api.com/books/title/${title}`);
+    const response = await axios.get();
     const titleBooks = response.data;
     if (titleBooks.length === 0) {
       return res.status(404).json({ message: "No books found with title" });
@@ -74,7 +74,7 @@ public_users.get('/title/:title', async function (req, res) {
 public_users.get('/review/:isbn', async function (req, res) {
   const { isbn } = req.params;
   try {
-    const response = await axios.get(`https://some-api.com/books/review/${isbn}`);
+    const response = await axios.get();
     const book = response.data;
     const { reviews } = book;
     return res.status(200).json({ reviews });

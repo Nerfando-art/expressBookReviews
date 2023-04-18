@@ -15,6 +15,19 @@ public_users.post("/register", (req, res) => {
   return res.status(200).json({ message: "user successfully registered" });
 });
 
+
+public_users.get('/', async function(req, res) {
+  try {
+    const response = await axios.get('https://api.example.com/books');
+    const books = response.data;
+    res.send(JSON.stringify(books, null, 2));
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred while getting the books.');
+  }
+});
+
+
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', async function (req, res) {
   const { isbn } = req.params;
